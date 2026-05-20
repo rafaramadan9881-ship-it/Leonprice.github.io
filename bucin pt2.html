@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffb3c6 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 35px 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(219, 68, 85, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transition: all 0.3s ease;
+        }
+        .heart {
+            font-size: 60px;
+            animation: pulse 1.2s infinite;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        h1 {
+            color: #ff4d6d;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #594d5b;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        /* Pembungkus tombol utama: bikin posisi awal sejajar sempurna */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Jarak aman antar tombol di awal */
+            width: 100%;
+        }
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s;
+        }
+        #btn-yes {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+        #btn-yes:hover {
+            background-color: #ff758f;
+            transform: scale(1.05);
+        }
+        #btn-no {
+            background-color: #e0e0e0;
+            color: #555;
+            /* Kita hapus position absolute di sini agar sinkron saat pertama dimuat */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1 id="title">Halo Cantik/Ganteng... ✨</h1>
+        <p id="text">Hari ini aku cuma mau nanya satu hal penting... Kamu mau gak jadi alasan aku semangat setiap hari? alias, mau gak nemenin aku terus? 🥺👉👈</p>
+        
+        <div class="btn-group">
+            <button id="btn-yes" onclick="kamuMau()">Mau!</button>
+            <button id="btn-no" onmouseover="hindari()" onclick="hindari()">Enggak</button>
+        </div>
+    </div>
+
+    <script>
+        const btnNo = document.getElementById('btn-no');
+        const title = document.getElementById('title');
+        const text = document.getElementById('text');
+        const heart = document.querySelector('.heart');
+        const btnYes = document.getElementById('btn-yes');
+
+        function hindari() {
+            // Begitu disentuh, tombol "Enggak" baru diubah posisinya menjadi fixed di layar
+            btnNo.style.position = 'fixed';
+            
+            // Kalkulasi area acak agar tombol tidak keluar dari batas layar browser
+            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth - 40);
+            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight - 40);
+            
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
+        }
+
+        function kamuMau() {
+            title.innerHTML = "Yeayyy! I Love You! 💖";
+            text.innerHTML = "Keputusan yang sangat tepat! Makasih ya udah mau bikin hari-hariku jadi lebih berwarna. Nanti kita jalan/call ya! 🥰✨";
+            
+            // Sembunyikan kedua tombol setelah sukses diklik
+            btnNo.style.display = 'none';
+            btnYes.style.display = 'none';
+            heart.innerHTML = "💖👩‍❤️‍👨💖";
+        }
+    </script>
+
+</body>
+</html>
